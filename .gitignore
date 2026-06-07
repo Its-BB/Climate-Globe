@@ -3,3 +3,4 @@ dist
 .data-cache
 *.local
 .DS_Store
+config.bat
