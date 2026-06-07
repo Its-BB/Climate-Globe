@@ -1,0 +1,376 @@
+:root {
+  --bg: #05060a;
+  --panel: rgba(16, 19, 28, 0.72);
+  --panel-border: rgba(255, 255, 255, 0.1);
+  --text: #e8ecf4;
+  --text-dim: #9aa5b8;
+  --accent: #4f9cff;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+
+.app {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.globe-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+/* ---- Header / title ---- */
+.title-bar {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  z-index: 10;
+  pointer-events: none;
+}
+.title-bar h1 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.breadcrumb {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ---- Glass panels ---- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* ---- Metric toggle ---- */
+.metric-toggle {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  padding: 4px;
+  gap: 4px;
+}
+.metric-toggle button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.metric-toggle button:hover {
+  color: var(--text);
+}
+.metric-toggle button.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ---- Legend ---- */
+.legend {
+  position: absolute;
+  bottom: 56px;
+  right: 20px;
+  z-index: 10;
+  padding: 12px 14px;
+  min-width: 150px;
+}
+.legend h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  margin: 3px 0;
+}
+.legend-swatch {
+  width: 16px;
+  height: 12px;
+  border-radius: 3px;
+  flex: none;
+}
+.legend-bar {
+  display: flex;
+  height: 12px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.legend-bar > div {
+  flex: 1;
+}
+.legend-scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* ---- Back button ---- */
+.back-btn {
+  position: absolute;
+  top: 70px;
+  left: 20px;
+  z-index: 10;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.back-btn:hover {
+  border-color: var(--accent);
+}
+
+/* ---- Loader ---- */
+.loader {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  padding: 8px 16px;
+  font-size: 13px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- Attribution footer ---- */
+.attribution {
+  position: absolute;
+  bottom: 8px;
+  left: 20px;
+  z-index: 10;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+.attribution a {
+  color: var(--text-dim);
+  text-decoration: underline;
+}
+
+/* ---- Search ---- */
+.search {
+  position: absolute;
+  top: 54px;
+  left: 20px;
+  z-index: 11;
+  width: 260px;
+}
+.search-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+}
+.search-input input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 14px;
+}
+.search-input input::placeholder {
+  color: var(--text-dim);
+}
+.search-results {
+  margin-top: 6px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+}
+.search-results button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  padding: 8px 10px;
+  border-radius: 7px;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+.search-results button:hover {
+  background: rgba(79, 156, 255, 0.18);
+}
+
+/* ---- Info panel ---- */
+.info-panel {
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
+  z-index: 10;
+  width: 250px;
+  padding: 16px;
+}
+.info-head {
+  margin-bottom: 14px;
+}
+.info-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+}
+.info-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.info-temp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.info-temp {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+}
+.info-cond {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.info-feels {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  border-top: 1px solid var(--panel-border);
+  padding-top: 12px;
+}
+.info-stat {
+  text-align: center;
+}
+.info-stat-v {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+.info-stat-l {
+  font-size: 10.5px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-top: 2px;
+}
+.info-empty {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.info-hint {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+/* ---- Globe hover tooltip (rendered by globe.gl) ---- */
+.gl-tooltip {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: rgba(12, 15, 22, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-width: 170px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.gl-tooltip .t-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.gl-tooltip .t-sub {
+  font-size: 11px;
+  color: #9aa5b8;
+  margin-bottom: 8px;
+}
+.gl-tooltip .t-cond {
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.gl-tooltip .t-stats {
+  display: flex;
+  gap: 14px;
+}
+.gl-tooltip .t-stat .v {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+.gl-tooltip .t-stat .l {
+  font-size: 10.5px;
+  color: #9aa5b8;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.gl-tooltip .t-hint {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--accent);
+}
